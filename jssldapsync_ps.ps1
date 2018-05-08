@@ -30,11 +30,13 @@ function GetDepartments ([String]$JssUrl, [PSCredential]$Credential) {
     }
     catch {
         # There were no departments stored in JAMF
-        $departmentNodes = @{}
+        $departmentNodes = $null
     }
 
-    foreach ($node in $departmentNodes) {
-        $listDepartments.Add($node.name, $null)
+    if ($departmentNodes -ne $null) {
+        foreach ($node in $departmentNodes) {
+            $listDepartments.Add($node.name, $null)
+        }
     }
     
     $listDepartments
@@ -52,13 +54,15 @@ function GetBuildings ([String]$JssUrl, [PSCredential]$Credential) {
     }
     catch {
         # There were no buildings stored in JAMF
-        $buildingNodes = @{}
+        $buildingNodes = $null
     }
 
-    foreach ($node in $buildingNodes) {
-        $listBuildings.Add($node.name, $null)
+    if ($buildingNodes -ne $null) {
+        foreach ($node in $buildingNodes) {
+            $listBuildings.Add($node.name, $null)
+        }
     }
-    
+
     $listBuildings
 }
 
